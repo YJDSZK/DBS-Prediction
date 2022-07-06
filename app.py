@@ -1,25 +1,25 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 from flask import Flask, render_template, request
 
 
-# In[ ]:
+# In[2]:
 
 
 import joblib
 
 
-# In[ ]:
+# In[3]:
 
 
 app = Flask(__name__)
 
 
-# In[ ]:
+# In[4]:
 
 
 @app.route("/",methods=["GET","POST"])
@@ -29,16 +29,16 @@ def index():
         model1 = joblib.load("regression")
         pred1 = model1.predict([[rates]])
         model2 = joblib.load("decision_tree")
-        pred1 = model2.predict([[rates]])
+        pred2 = model2.predict([[rates]])
         return(render_template("index.html", result1=pred1, result2 = pred2))
     else:
-        return(render_template("index.html", result1="WAITING", result2="WAITTING"))
+        return(render_template("index.html", result1="WAITING", result2="WAITING"))
 
 
 # In[ ]:
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run()
 
 
